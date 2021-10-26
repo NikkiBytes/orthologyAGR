@@ -33,7 +33,9 @@ def set_document(rec):
     return doc;
 
 # gene query method
-def get_gene(gene_id, gene_client):
+def get_gene(gene_id):
+    # initialize mygene object
+    gene_client = get_client('gene') 
     gene=gene_client.getgene(gene_id, fields='symbol,name')
     return gene;
 
@@ -53,10 +55,6 @@ def load_orthology(data_folder):
 
     process_key = lambda k: k.replace(" ","_").lower() 
 
-    # initialize mygene object
-    gene_client = get_client('gene') 
-    
-
     # iterate over the data
     for rec in data_ortho:
 
@@ -66,7 +64,7 @@ def load_orthology(data_folder):
         _id = id1_tag2
 
         # query for the corresponding numeric id of the original id
-        gene=get_gene(_id, gene_client)
+        gene=get_gene(_id)
         
         # check if gene id was not found
         if not gene:
@@ -90,3 +88,8 @@ def load_orthology(data_folder):
         yield doc
     
     #return final_list;
+from biothings_client import get_client
+
+gene_client = get_client('gene')
+
+gene=gene_client.getgene(gene_id, fields='symbol,name')
