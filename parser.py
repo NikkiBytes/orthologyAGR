@@ -38,7 +38,7 @@ def get_gene(gene_id):
 
 
 # main method 
-def load_orthology(data, data_list):
+def load_orthology(data):
     # gather data file 
     infile = os.path.join(data_folder, "ORTHOLOGY-ALLIANCE_COMBINED.tsv")
     assert os.path.exists(infile)
