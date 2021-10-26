@@ -41,7 +41,7 @@ def get_gene(gene_id, gene_client):
 # main method 
 def load_orthology(data_folder):
     # setup data from the file
-    infile = os.path.join(data_folder)#, "ORTHOLOGY-ALLIANCE_COMBINED.tsv")
+    infile = os.path.join(data_folder, "ORTHOLOGY-ALLIANCE_COMBINED.tsv")
     assert os.path.exists(infile)
 
     # use pandas to load -- update to use built-in package from utils !!!!!
