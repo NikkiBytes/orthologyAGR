@@ -1,5 +1,6 @@
 
 import os, pandas
+from typing import final
 import numpy as np
 
 from biothings_client import get_client
@@ -56,7 +57,7 @@ def load_orthology(data_folder):
     gene_client = get_client('gene')
 
     # iterate over the data
-    for rec in data_ortho:
+    for rec in data_ortho[:100]:
 
         # get the main ID and reformat 
         orig_id1= rec["Gene1ID"].split(':')
@@ -85,4 +86,5 @@ def load_orthology(data_folder):
         doc = {"_id": _id, "agr": {"ortholog" : docs}}
         final_list.append(doc)
         #print(json.dumps(doc, sort_keys=False, indent=4))
-        yield doc
+        #yield doc
+    return final_list;
