@@ -34,8 +34,7 @@ def set_document(rec):
 
 # gene query method
 def get_gene(gene_id):
-    # initialize mygene object
-    gene_client = get_client('gene') 
+     
     gene=gene_client.getgene(gene_id, fields='symbol,name')
     return gene;
 
@@ -55,6 +54,9 @@ def load_orthology(data_folder):
 
     process_key = lambda k: k.replace(" ","_").lower() 
 
+    # initialize mygene object
+    gene_client = get_client('gene')
+    
     # iterate over the data
     for rec in data_ortho:
 
@@ -86,10 +88,3 @@ def load_orthology(data_folder):
         final_list.append(doc)
         #print(json.dumps(doc, sort_keys=False, indent=4))
         yield doc
-    
-    #return final_list;
-from biothings_client import get_client
-
-gene_client = get_client('gene')
-
-gene=gene_client.getgene(gene_id, fields='symbol,name')
