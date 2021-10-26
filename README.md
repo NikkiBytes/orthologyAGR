@@ -3,7 +3,8 @@
 ## <u> Document Structure </u>
       
 ```
-"_id": "WBGene00011502" --> "176377" by querying mygene.info API,
+{
+  _id": "WBGene00011502" --> "176377" by querying mygene.info API,
   "agr": 
      "ortholog": [
         {
