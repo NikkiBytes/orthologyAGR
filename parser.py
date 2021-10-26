@@ -1,5 +1,5 @@
 
-import os, pandas
+import os, pandas, json
 from typing import final
 import numpy as np
 
@@ -25,7 +25,7 @@ def set_document(rec):
     doc={
         "geneid": rec['gene2id'],
         "symbol": rec['gene2symbol'],
-        "taxid": rec['gene2speciestaxonid'], 
+        "taxid": int(rec['gene2speciestaxonid']), 
         "algorithmsmatch": rec["algorithmsmatch"],
         "outofalgorithms": rec["outofalgorithms"] ,
         "isbestscore": convert_score(rec['isbestscore']),
@@ -57,7 +57,7 @@ def load_orthology(data_folder):
     gene_client = get_client('gene')
 
     # iterate over the data
-    for rec in data_ortho[:100]:
+    for rec in data_ortho:
 
         # get the main ID and reformat 
         orig_id1= rec["Gene1ID"].split(':')
@@ -82,9 +82,10 @@ def load_orthology(data_folder):
         results.setdefault(_id,[]).append(doc)
 
     # iterate through result items
-    for _id,docs in results.items():
-        doc = {"_id": _id, "agr": {"ortholog" : docs}}
-        final_list.append(doc)
-        #print(json.dumps(doc, sort_keys=False, indent=4))
+    #for _id,docs in results.items():
+        final_doc = {"_id": _id, "agr": {"ortholog" : doc}}
+        final_list.append(final_doc)
         #yield doc
+    #print(json.dumps(final_list[:3], sort_keys=False, indent=4))
     return final_list;
+
