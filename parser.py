@@ -53,6 +53,9 @@ def load_orthology(data_folder):
 
     process_key = lambda k: k.replace(" ","_").lower() 
 
+    # initialize mygene object
+    gene_client = get_client('gene') 
+    
     # iterate over the data
     for rec in data_ortho:
 
@@ -62,7 +65,7 @@ def load_orthology(data_folder):
         _id = id1_tag2
 
         # query for the corresponding numeric id of the original id
-        gene=get_gene(_id)
+        gene=get_gene(_id, gene_client)
         
         # check if gene id was not found
         if not gene:
