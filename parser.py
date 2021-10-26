@@ -3,6 +3,8 @@ import os, pandas
 import numpy as np
 from biothings.utils.dataload import dict_convert, dict_sweep
 from biothings import config
+from biothings_client import get_client
+
 logging = config.logger
 
 process_key = lambda k: k.replace(" ","_").lower()
@@ -32,20 +34,24 @@ def set_document(rec):
     return doc;
 
 # gene query method
-def get_gene(gene_id):
+def get_gene(gene_id, gene_client):
     gene=gene_client.getgene(gene_id, fields='symbol,name')
     return gene;
 
 
 # main method 
 def load_orthology(data_folder):
-    # gather data file 
+    # setup data from the file
     infile = os.path.join(data_folder, "ORTHOLOGY-ALLIANCE_COMBINED.tsv")
     assert os.path.exists(infile)
+
+    # use pandas to load -- update to use built-in package from utils !!!!!
     data_ortho=pandas.read_csv(infile, header=15, sep="\\t").to_dict(orient='records')
+
     results = {} # initialize final result dict 
     bad_queries=[] # initialize gene query ids that return None (empty)
-    process_key = lambda k: k.replace(" ","_").lower()
+
+    process_key = lambda k: k.replace(" ","_").lower() 
 
     # iterate over the data
     for rec in data_ortho:
