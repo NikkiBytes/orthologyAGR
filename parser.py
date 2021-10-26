@@ -33,11 +33,9 @@ def set_document(rec):
     return doc;
 
 # gene query method
-def get_gene(gene_id):
-     
+def get_gene(gene_id, gene_client):
     gene=gene_client.getgene(gene_id, fields='symbol,name')
     return gene;
-
 
 # main method 
 def load_orthology(data_folder):
@@ -56,7 +54,7 @@ def load_orthology(data_folder):
 
     # initialize mygene object
     gene_client = get_client('gene')
-    
+
     # iterate over the data
     for rec in data_ortho:
 
@@ -66,7 +64,7 @@ def load_orthology(data_folder):
         _id = id1_tag2
 
         # query for the corresponding numeric id of the original id
-        gene=get_gene(_id)
+        gene=get_gene(_id, gene_client)
         
         # check if gene id was not found
         if not gene:
