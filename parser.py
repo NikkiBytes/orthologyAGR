@@ -4,9 +4,9 @@ import numpy as np
 
 from biothings_client import get_client
 from biothings.utils.dataload import dict_convert, dict_sweep
-#from biothings import config
+from biothings import config
 
-#logging = config.logger
+logging = config.logger
 
 def setup_release(self):
     release="2019-06-23"
@@ -57,32 +57,36 @@ def load_orthology(data_folder):
     # iterate over the data
     for rec in data_ortho:
 
-        # get the main ID and reformat 
-        orig_id1= rec["Gene1ID"].split(':')
-        id1_tag2=orig_id1[1]
-        _id = id1_tag2
+        try:
+            # get the main ID and reformat 
+            orig_id1= rec["Gene1ID"].split(':')
+            id1_tag2=orig_id1[1]
+            _id = id1_tag2
 
-        # query for the corresponding numeric id of the original id
-        gene=get_gene(_id, gene_client)
-        
-        # check if gene id was not found
-        if not gene:
-            bad_queries.append(_id) # add no matching id
-        else:
-            _id = gene["_id"] # assign new id queried from mygene
+            # query for the corresponding numeric id of the original id
+            gene=get_gene(_id, gene_client)
+            
+            # check if gene id was not found
+            if not gene:
+                bad_queries.append(_id) # add no matching id
+            else:
+                _id = gene["_id"] # assign new id queried from mygene
 
-        rec = dict_convert(rec,keyfn=process_key)
-        # remove NaN values, not indexable
-        rec = dict_sweep(rec,vals=[np.nan])
+            rec = dict_convert(rec,keyfn=process_key)
+            # remove NaN values, not indexable
+            rec = dict_sweep(rec,vals=[np.nan])
 
-        # setup document
-        doc=set_document(rec)
-        
-        # add to the results
-        #results.setdefault(_id,[]).append(doc)
+            # setup document
+            doc=set_document(rec)
+            
+            # add to the results
+            #results.setdefault(_id,[]).append(doc)
 
-        final_doc = {"_id": _id, "agr": {"ortholog" : doc}}
-        final_list.append(final_doc)
+            final_doc = {"_id": _id, "agr": {"ortholog" : doc}}
+            final_list.append(final_doc)
+
+        except:
+            continue
 
     #print(json.dumps(final_list[:3], sort_keys=False, indent=4))
     return final_list;
