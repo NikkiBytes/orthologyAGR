@@ -55,7 +55,7 @@ def load_orthology(data_folder):
     gene_client = get_client('gene')
 
     # iterate over the data
-    for rec in data_ortho:
+    for rec in data_ortho[:50]:
 
         try:
             # get the main ID and reformat 
