@@ -40,13 +40,12 @@ def get_gene(gene_id, gene_client):
 # main method 
 def load_orthology(data_folder):
     # setup data from the file
-    infile = os.path.join(data_folder)#, "ORTHOLOGY-ALLIANCE_COMBINED.tsv")
+    infile = os.path.join(data_folder, "ORTHOLOGY-ALLIANCE_COMBINED.tsv")
     assert os.path.exists(infile)
 
     # use pandas to load -- update to use built-in package from utils !!!!!
     data_ortho=pandas.read_csv(infile, header=15, sep="\\t", engine='python').to_dict(orient='records')
 
-    results = {} # initialize final result dict 
     final_list=[] # initialize final data list
     bad_queries=[] # initialize gene query ids that return None (empty)
 
@@ -82,12 +81,8 @@ def load_orthology(data_folder):
         # add to the results
         #results.setdefault(_id,[]).append(doc)
 
-    # iterate through result items
-    #for _id,docs in results.items():
         final_doc = {"_id": _id, "agr": {"ortholog" : doc}}
         final_list.append(final_doc)
-        #yield doc
+
     #print(json.dumps(final_list[:3], sort_keys=False, indent=4))
     return final_list;
-
-load_orthology("/Users/nacosta/Documents/ORTHOLOGY-ALLIANCE_COMBINED_51.tsv")
