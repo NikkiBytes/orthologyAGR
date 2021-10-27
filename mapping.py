@@ -1,4 +1,4 @@
-def get_customizd_mapping(cls):
+def get_customized_mapping(cls):
     mapping={
             "agr": {
                 "properties": {
