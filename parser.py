@@ -34,8 +34,8 @@ def set_document(rec):
 
 # gene query method
 def get_gene(gene_id, gene_client):
-    gene=gene_client.getgene(gene_id, fields='symbol,name')
-    return gene;
+    return gene_client.getgene(gene_id, fields='symbol,name');
+   
 
 # main method 
 def load_orthology(data_folder):
