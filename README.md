@@ -3,15 +3,24 @@
 ## <u> Document Structure </u>
       
 ```
-{
-{'_id': '176377',
-  'agr': {'ortholog': {'geneid': 'SGD:S000003566',
-    'symbol': 'VPS53',
-    'taxid': 559292,
-    'algorithmsmatch': 9,
-    'outofalgorithms': 10,
-    'isbestscore': True,
-    'isbestrevscore': True}}}
+
+  {
+  '_id': '176377',
+  'agr':
+    {
+    'ortholog': 
+      {
+        'geneid': 'SGD:S000003566',
+        'symbol': 'VPS53',
+        'taxid': 559292,
+        'algorithmsmatch': 9,
+        'outofalgorithms': 10,
+        'isbestscore': True,
+        'isbestrevscore': True
+      }
+    }
+  }
+
 ```  
 
 
