@@ -46,7 +46,6 @@
 
 <br>  
 
-- verifying that `gene1id` and `gene2id` both reference eachother to confirm data document setup 
-  
+- verifying that `gene1id` and `gene2id` both reference eachother to confirm data document setup. 
   
 <br>
