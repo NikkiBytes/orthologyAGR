@@ -55,8 +55,8 @@ def orthology_search(gene_id, df):
 # Build Parser 
 def load_orthology(data_folder):
     # setup data from the file
-    infile = os.path.join(data_folder, "ORTHOLOGY-ALLIANCE_COMBINED_51.tsv")
-    zfin_ncbi_file=os.path.join(data_folder, "gene_2021.11.02.txt")
+    infile = os.path.join(data_folder, "ORTHOLOGY-ALLIANCE_COMBINED.tsv")
+    zfin_ncbi_file=os.path.join(data_folder, "gene.txt")
 
     assert os.path.exists(infile)
 
