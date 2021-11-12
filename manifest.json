@@ -7,15 +7,13 @@
         "license": "CC BY 4.0"
     },
     "dumper" : {
-        "data_url" : [ "https://fms.alliancegenome.org/download/ORTHOLOGY-ALLIANCE_COMBINED.tsv.gz",
-                        ""], 
+        "data_url" : ["https://fms.alliancegenome.org/download/ORTHOLOGY-ALLIANCE_COMBINED.tsv.gz",
+                    "https://zfin.org/downloads/gene.txt"], 
         "uncompress" : true,
         "release": "parser:setup_release"
     },
     "uploader" : {
         "parser" : "parser:load_orthology",
-        "on_duplicates" : "error",
-        "mapping": "mapping:get_customized_mapping"
-        
+        "on_duplicates" : "error"        
     }
 }
