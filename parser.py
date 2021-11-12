@@ -94,7 +94,7 @@ def load_orthology(data_folder):
                         temp_df=zfin_df.loc[zfin_df["ZFIN ID"] == gene1_id ]
                         gene1_id=temp_df["NCBI Gene ID"].values[0]
                     except:
-                        bad_queries.append(gene_id)
+                        bad_queries.append(gene1_id)
 
                 else:
                     bad_queries.append(gene1_id) # add no matching id
