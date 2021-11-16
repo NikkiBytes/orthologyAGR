@@ -96,7 +96,7 @@ def load_orthology(data_folder):
     #print("[INFO] loading orthology AGR data....")
     
     # setup data from the file
-    infile = os.path.join(data_folder, "ORTHOLOGY-ALLIANCE_COMBINED_51.tsv")
+    infile = os.path.join(data_folder, "ORTHOLOGY-ALLIANCE_COMBINED.tsv")
     assert os.path.exists(infile)
 
     # use pandas to load -- update to use built-in package from utils !!!!!
