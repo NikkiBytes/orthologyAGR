@@ -112,7 +112,7 @@ def load_orthology(data_folder):
     process_key = lambda k: k.replace(" ","_").lower() 
     
     # loop through ids and create records 
-    for gene1_id in unique_ids[:400]:
+    for gene1_id in unique_ids[:100]:
 
         # initialize mygene object
         gene_client = get_client('gene')
