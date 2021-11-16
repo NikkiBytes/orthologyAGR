@@ -11,8 +11,8 @@
 - Confirmed the **pairwise relations** among IDs.  
 - The variable, `"algorithms": "PhylomeDB|OrthoFinder|Hieranoid|OMA|Ensembl Compara|Roundup|InParanoid|PANTHER|OrthoInspector"` is available in the data file. The current output does not include it, however the variable can easily be added. Note, if added, we consider reformatting the data string into a list of strings. 
 
-<br>
-<br>
+
+
 
 ## <u> Document Structure </u>
       
