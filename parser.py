@@ -56,6 +56,7 @@ def get_entrezgene(gene_id, gene_client, bad_queries):
     #gene_client = get_client('gene') # initialize mygene object
     if "WB:" in gene_id: gene_id=gene_id.replace("WB:", "WormBase:")
     if "FB:" in gene_id: gene_id=gene_id.replace("FB:", "FLYBASE:")
+    if "MGI:" in gene_id: gene_id=gene_id.replace("MGI:", "mgi:MGI\:")
     #gene=gene_client.getgene(gene_id, fields='symbol,name')
 
     #print("[INFO] searching for gene id ", gene_id)
@@ -112,7 +113,7 @@ def load_orthology(data_folder):
     process_key = lambda k: k.replace(" ","_").lower() 
     
     # loop through ids and create records 
-    for gene1_id in unique_ids[:100]:
+    for gene1_id in unique_ids[:200]:
 
         # initialize mygene object
         gene_client = get_client('gene')
