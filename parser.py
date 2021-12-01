@@ -64,7 +64,7 @@ def load_orthology(data_folder):
 
     # setup data from the file
     print("[INFO] loading orthology AGR data....")
-    infile = os.path.join(data_folder, "ORTHOLOGY-ALLIANCE_COMBINED_51.tsv")
+    infile = os.path.join(data_folder, "ORTHOLOGY-ALLIANCE_COMBINED.tsv")
     assert os.path.exists(infile)
 
     gene_client = get_client('gene')
