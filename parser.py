@@ -116,9 +116,6 @@ def load_orthology(data_folder):
                 "_id": _id,
                 "agr":ortholog_dict
                 }
-
-        if len(ortholog_dict["orthologs"]) >1:
-            print("\n", json.dumps(ortholog_dict, indent=4))
         records.append(record)
 
     return records;
