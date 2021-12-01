@@ -75,7 +75,7 @@ def load_orthology(data_folder):
     failed_pairwise=[] # initialize list to hold any failed pairwise checks
 
     # use dataload from biothings util to load tsv file
-    for i, x in enumerate(list(dl.tabfile_feeder(infile, header=15, sep="\t"))):
+    for i, x in enumerate(list(dl.tabfile_feeder(infile, header=15, sep="\t"))[:10000]):
         # pull out first row for the column header names
         if i == 0: cols_names=x, print('[COLS] %s \n'%" ".join(x))
         # if it isn't the first row, continue with id record
