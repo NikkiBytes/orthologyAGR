@@ -2,15 +2,12 @@
 # Orthology AGR Data Parser  
 # Author: Nichollette T. Acosta  
 # Organization: Su and Wu labs @ Scripps Research  
-# Data parser for the Alliance of Genome Resources database for orthology relationships. 
+# Data parser for the Alliance of Genome Resources database for ortholog relationships. 
 """
 # load packages
 import os
 from biothings_client import get_client
 import biothings.utils.dataload as dl
-#from biothings import config
-
-#logging = config.logger
 
 def setup_release(self):
     release="2019-06-23"
@@ -27,8 +24,6 @@ def convert_score(score):
         return True;
     else:
         return False;
-
-
 
 def get_entrez_id(gene_id, gene_client, bad_queries):
     """
@@ -75,23 +70,18 @@ def load_orthology(data_folder):
     failed_pairwise=[] # initialize list to hold any failed pairwise checks
 
     # use dataload from biothings util to load tsv file
-    for i, x in enumerate(list(dl.tabfile_feeder(infile, header=15, sep="\t"))[:1000]):
+    for i, x in enumerate(list(dl.tabfile_feeder(infile, header=15, sep="\t"))):
         # pull out first row for the column header names
         if i == 0: cols_names=x, print('[COLS] %s \n'%" ".join(x))
         # if it isn't the first row, continue with id record
         else:
             # initialize data holders
-            data_dict={}
-            #gene_id=x[0]
-            #ortholog_id=x[4]
-
             gene_id=get_entrez_id(x[0], gene_client, bad_queries)
             ortholog_id=get_entrez_id(x[4], gene_client, bad_queries)
 
         
             if gene_id not in gene_dict.keys(): 
-                #id_list.append(gene_id) 
-                #data_dict["_id"] = gene_id
+
                 gene_dict[gene_id]={"orthologs": []}
 
             # setup dictionary record
